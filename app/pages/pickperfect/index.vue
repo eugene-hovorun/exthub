@@ -13,6 +13,26 @@ useSeoMeta({
   twitterCard: "summary_large_image",
 });
 
+useHead({
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map((item) => ({
+          "@type": "Question",
+          name: item.label,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.content,
+          },
+        })),
+      }),
+    },
+  ],
+});
+
 const features = [
   {
     icon: "i-lucide-pipette",
@@ -51,6 +71,49 @@ const features = [
       "Extract the dominant color palette from any webpage with one click. See all the colors a site uses at a glance.",
   },
 ];
+
+const faq = [
+  {
+    label: "Is PickPerfect free?",
+    content:
+      "Yes! Core features — color picking, format switching, and color history — are completely free. Premium features (WCAG checker, Tailwind mapping, palette extraction) are a one-time $2.99 purchase. No subscriptions.",
+  },
+  {
+    label: "Does it collect any data?",
+    content:
+      "No. PickPerfect stores your color history and preferences locally on your device using Chrome's storage API. Nothing is ever sent to any server. See our privacy policy for full details.",
+  },
+  {
+    label: "How does the color picker work?",
+    content:
+      "PickPerfect uses the browser's native EyeDropper API, which means it can pick colors from anywhere on your screen — not just the browser window. No content scripts are injected into pages for basic color picking.",
+  },
+  {
+    label: "What color formats are supported?",
+    content:
+      "HEX, RGB, and HSL. You can switch between them with one click, and your preferred format is remembered for next time.",
+  },
+  {
+    label: "How does the Tailwind color mapping work?",
+    content:
+      "When you pick a color, PickPerfect compares it against all 242 Tailwind CSS colors and shows you the nearest match with its class name. Great for converting design colors to Tailwind utilities.",
+  },
+  {
+    label: "What does the WCAG contrast checker do?",
+    content:
+      "It lets you compare any two colors and instantly shows whether the combination passes WCAG AA and AAA standards for both normal and large text. Essential for building accessible interfaces.",
+  },
+  {
+    label: "How does page palette extraction work?",
+    content:
+      "Click \"Extract Palette\" and PickPerfect reads the computed CSS colors from visible elements on the active tab. It groups and deduplicates them to show you the page's color palette. The script runs once and doesn't persist.",
+  },
+  {
+    label: "Which browsers are supported?",
+    content:
+      "PickPerfect works in Chrome and Chromium-based browsers (Edge, Brave, Arc, etc.) that support the EyeDropper API.",
+  },
+];
 </script>
 
 <template>
@@ -84,6 +147,13 @@ const features = [
       description="From quick picks to accessibility audits — one extension, zero bloat."
       :features="features"
     />
+
+    <UPageSection
+      title="Frequently Asked Questions"
+      description="Everything you need to know about PickPerfect."
+    >
+      <UAccordion :items="faq" class="max-w-3xl mx-auto" />
+    </UPageSection>
 
     <UPageSection>
       <UPageCTA
