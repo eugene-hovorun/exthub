@@ -5,34 +5,6 @@ const description =
 const chromeWebStoreUrl =
   "https://chromewebstore.google.com/detail/pickperfect-%E2%80%94-color-picke/egnmgmdkcakjkfhjknkdokmmhiaiklhl";
 
-useSeoMeta({
-  title,
-  description,
-  ogTitle: title,
-  ogDescription: description,
-  twitterCard: "summary_large_image",
-});
-
-useHead({
-  script: [
-    {
-      type: "application/ld+json",
-      innerHTML: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faq.map((item) => ({
-          "@type": "Question",
-          name: item.label,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: item.content,
-          },
-        })),
-      }),
-    },
-  ],
-});
-
 const features = [
   {
     icon: "i-lucide-pipette",
@@ -114,62 +86,90 @@ const faq = [
       "PickPerfect works in Chrome and Chromium-based browsers (Edge, Brave, Arc, etc.) that support the EyeDropper API.",
   },
 ];
+
+useSeoMeta({
+  title,
+  description,
+  ogTitle: title,
+  ogDescription: description,
+  twitterCard: "summary_large_image",
+});
+
+useHead({
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map((item) => ({
+          "@type": "Question",
+          name: item.label,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.content,
+          },
+        })),
+      }),
+    },
+  ],
+});
 </script>
 
 <template>
-  <div>
-    <UPageHero
-      :title="title"
-      :description="description"
-      :ui="{ title: 'text-4xl sm:text-5xl' }"
-    >
-      <template #links>
-        <UButton
-          :to="chromeWebStoreUrl"
-          target="_blank"
-          label="Add to Chrome — Free"
-          trailing-icon="i-lucide-chrome"
-          size="xl"
-        />
-        <UButton
-          to="/pickperfect/policy"
-          label="Privacy Policy"
-          icon="i-lucide-shield-check"
-          size="xl"
-          color="neutral"
-          variant="subtle"
-        />
-      </template>
-    </UPageHero>
-
-    <UPageSection
-      title="Everything you need to work with color"
-      description="From quick picks to accessibility audits — one extension, zero bloat."
-      :features="features"
-    />
-
-    <UPageSection
-      title="Frequently Asked Questions"
-      description="Everything you need to know about PickPerfect."
-    >
-      <UAccordion :items="faq" class="max-w-3xl mx-auto" />
-    </UPageSection>
-
-    <UPageSection>
-      <UPageCTA
-        title="Free core features. Premium for $2.99."
-        description="Color picking, format switching, and history are completely free. Unlock WCAG checker, Tailwind mapping, and palette extraction with a one-time $2.99 purchase. No subscriptions."
-        variant="subtle"
-        :links="[
-          {
-            label: 'Install from Chrome Web Store',
-            to: chromeWebStoreUrl,
-            target: '_blank',
-            trailingIcon: 'i-lucide-external-link',
-            color: 'neutral',
-          },
-        ]"
+  <UPageHero
+    :title="title"
+    :description="description"
+    :ui="{ title: 'text-4xl sm:text-5xl' }"
+  >
+    <template #links>
+      <UButton
+        :to="chromeWebStoreUrl"
+        target="_blank"
+        label="Add to Chrome — Free"
+        trailing-icon="i-lucide-chrome"
+        size="xl"
       />
-    </UPageSection>
-  </div>
+      <UButton
+        to="/pickperfect/policy"
+        label="Privacy Policy"
+        icon="i-lucide-shield-check"
+        size="xl"
+        color="neutral"
+        variant="subtle"
+      />
+    </template>
+  </UPageHero>
+
+  <UPageSection
+    title="Everything you need to work with color"
+    description="From quick picks to accessibility audits — one extension, zero bloat."
+    :features="features"
+  />
+
+  <UPageSection
+    title="Frequently Asked Questions"
+    description="Everything you need to know about PickPerfect."
+  >
+    <UAccordion :items="faq" class="max-w-3xl mx-auto" />
+  </UPageSection>
+
+  <UPageSection>
+    <UPageCTA
+      title="Free core features. Premium for $2.99."
+      description="Color picking, format switching, and history are completely free. Unlock WCAG checker, Tailwind mapping, and palette extraction with a one-time $2.99 purchase. No subscriptions."
+      variant="subtle"
+      :links="[
+        {
+          label: 'Install from Chrome Web Store',
+          to: chromeWebStoreUrl,
+          target: '_blank',
+          trailingIcon: 'i-lucide-external-link',
+          color: 'neutral',
+        },
+      ]"
+    />
+  </UPageSection>
+
+  <AppGradient />
 </template>
