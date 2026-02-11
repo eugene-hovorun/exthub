@@ -44,6 +44,25 @@ const features = [
   },
 ];
 
+const screenshots = [
+  {
+    src: "/pickperfect/screenshot_1.png",
+    alt: "PickPerfect — Color picking with history",
+  },
+  {
+    src: "/pickperfect/screenshot_2.png",
+    alt: "PickPerfect — Tailwind CSS color mapping",
+  },
+  {
+    src: "/pickperfect/screenshot_3.png",
+    alt: "PickPerfect — WCAG contrast checker",
+  },
+  {
+    src: "/pickperfect/screenshot_4.png",
+    alt: "PickPerfect — Page palette extraction",
+  },
+];
+
 const faq = [
   {
     label: "Is PickPerfect free?",
@@ -117,59 +136,86 @@ useHead({
 </script>
 
 <template>
-  <UPageHero
-    :title="title"
-    :description="description"
-    :ui="{ title: 'text-4xl sm:text-5xl' }"
-  >
-    <template #links>
-      <UButton
-        :to="chromeWebStoreUrl"
-        target="_blank"
-        label="Add to Chrome — Free"
-        trailing-icon="i-lucide-chrome"
-        size="xl"
-      />
-      <UButton
-        to="/pickperfect/policy"
-        label="Privacy Policy"
-        icon="i-lucide-shield-check"
-        size="xl"
-        color="neutral"
-        variant="subtle"
-      />
-    </template>
-  </UPageHero>
+  <div>
+    <UPageHero
+      :title="title"
+      :description="description"
+      :ui="{
+        title: 'text-4xl sm:text-5xl',
+      }"
+    >
+      <template #links>
+        <UButton
+          :to="chromeWebStoreUrl"
+          target="_blank"
+          label="Add to Chrome — Free"
+          trailing-icon="i-lucide-chrome"
+          size="xl"
+        />
+        <UButton
+          to="/pickperfect/policy"
+          label="Privacy Policy"
+          icon="i-lucide-shield-check"
+          size="xl"
+          color="neutral"
+          variant="subtle"
+        />
+      </template>
+    </UPageHero>
 
-  <UPageSection
-    title="Everything you need to work with color"
-    description="From quick picks to accessibility audits — one extension, zero bloat."
-    :features="features"
-  />
+    <UPageSection :ui="{ container: 'py-12 sm:py-16 lg:py-20' }">
+      <UCarousel
+        v-slot="{ item }"
+        :items="screenshots"
+        loop
+        arrows
+        dots
+        :autoplay="{ delay: 4000 }"
+        :prev="{ variant: 'solid', color: 'neutral' }"
+        :next="{ variant: 'solid', color: 'neutral' }"
+        :ui="{
+          item: 'basis-full px-4',
+          dots: '-bottom-8',
+        }"
+        class="max-w-4xl mx-auto"
+      >
+        <img
+          :src="item.src"
+          :alt="item.alt"
+          class="w-full rounded-lg shadow-lg"
+          loading="lazy"
+        />
+      </UCarousel>
+    </UPageSection>
 
-  <UPageSection
-    title="Frequently Asked Questions"
-    description="Everything you need to know about PickPerfect."
-  >
-    <UAccordion :items="faq" class="max-w-3xl mx-auto" />
-  </UPageSection>
-
-  <UPageSection>
-    <UPageCTA
-      title="Free core features. Premium for $2.99."
-      description="Color picking, format switching, and history are completely free. Unlock WCAG checker, Tailwind mapping, and palette extraction with a one-time $2.99 purchase. No subscriptions."
-      variant="subtle"
-      :links="[
-        {
-          label: 'Install from Chrome Web Store',
-          to: chromeWebStoreUrl,
-          target: '_blank',
-          trailingIcon: 'i-lucide-external-link',
-          color: 'neutral',
-        },
-      ]"
+    <UPageSection
+      title="Everything you need to work with color"
+      description="From quick picks to accessibility audits — one extension, zero bloat."
+      :features="features"
     />
-  </UPageSection>
 
-  <AppGradient />
+    <UPageSection
+      title="Frequently Asked Questions"
+      description="Everything you need to know about PickPerfect."
+    >
+      <UAccordion :items="faq" class="max-w-3xl mx-auto" />
+    </UPageSection>
+
+    <UPageSection>
+      <UPageCTA
+        title="Free core features. Premium for $2.99."
+        description="Color picking, format switching, and history are completely free. Unlock WCAG checker, Tailwind mapping, and palette extraction with a one-time $2.99 purchase. No subscriptions."
+        variant="subtle"
+        :links="[
+          {
+            label: 'Install from Chrome Web Store',
+            to: chromeWebStoreUrl,
+            target: '_blank',
+            trailingIcon: 'i-lucide-external-link',
+            color: 'neutral',
+          },
+        ]"
+      />
+    </UPageSection>
+  </div>
 </template>
