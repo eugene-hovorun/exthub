@@ -19,12 +19,21 @@ useSeoMeta({
     :ui="{ title: 'text-5xl sm:text-6xl' }"
   >
     <template #links>
-      <UButton
-        to="/pickperfect"
-        label="PickPerfect — Color Picker"
-        trailing-icon="i-lucide-arrow-right"
-        size="xl"
-      />
+      <div class="flex flex-col gap-4">
+        <UButton
+          to="/pickperfect"
+          label="PickPerfect — Color Picker"
+          trailing-icon="i-lucide-arrow-right"
+          size="xl"
+        />
+
+        <UButton
+          to="/devpulse"
+          label="DevPulse — Developer Tools"
+          trailing-icon="i-lucide-arrow-right"
+          size="xl"
+        />
+      </div>
     </template>
 
     <template #bottom>

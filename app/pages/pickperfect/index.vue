@@ -217,5 +217,6 @@ useHead({
         ]"
       />
     </UPageSection>
+    <AppGradient />
   </div>
 </template>
