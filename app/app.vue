@@ -20,7 +20,7 @@ useHead({
       <template #left>
         <NuxtLink to="/" class="flex items-center gap-2 font-bold text-lg">
           <UIcon name="i-lucide-puzzle" class="size-5" />
-          ExtHub
+          <span> <span class="text-success">Ext</span>Hub </span>
         </NuxtLink>
       </template>
 
