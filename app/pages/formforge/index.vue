@@ -1,5 +1,5 @@
 <script setup>
-const title = "FormForge — Smart Form Filler for Developers";
+const title = "FormForge - Smart Form Filler for Developers";
 const description =
   "One-click realistic fake data for any form. Smart field detection, locale-aware generation, custom profiles. Built for localhost, works everywhere.";
 const chromeWebStoreUrl =
@@ -16,7 +16,7 @@ const features = [
     icon: "i-lucide-user-check",
     title: "Coherent Identities",
     description:
-      "Generates a complete, realistic person for each fill — not random junk in every field. Name, email, username, and URL all match the same identity.",
+      "Generates a complete, realistic person for each fill - not random junk in every field. Name, email, username, and URL all match the same identity.",
   },
   {
     icon: "i-lucide-globe",
@@ -47,16 +47,22 @@ const features = [
 const screenshots = [
   {
     src: "/formforge/screenshot_1.png",
-    alt: "FormForge — Popup with filled form fields highlighted in green",
+    alt: "FormForge - Popup with filled form fields highlighted in green",
   },
   {
     src: "/formforge/screenshot_2.png",
-    alt: "FormForge — Custom profile editor with field overrides",
+    alt: "FormForge - Custom profile editor with field overrides",
   },
   {
     src: "/formforge/screenshot_3.png",
-    alt: "FormForge — Multiple locale options for international form testing",
+    alt: "FormForge - Multiple locale options for international form testing",
   },
+];
+
+const metrics = [
+  { value: "7", label: "supported locales" },
+  { value: "Alt+F", label: "instant fill shortcut" },
+  { value: "$2.99", label: "one-time pro unlock" },
 ];
 
 const faq = [
@@ -83,7 +89,7 @@ const faq = [
   {
     label: "Does it work on localhost?",
     content:
-      "Yes, and that's the primary use case. FormForge uses the activeTab permission so it works on any page you're viewing — localhost, staging, production, or any other URL.",
+      "Yes, and that's the primary use case. FormForge uses the activeTab permission so it works on any page you're viewing - localhost, staging, production, or any other URL.",
   },
   {
     label: "Can I fill forms with specific values?",
@@ -93,7 +99,7 @@ const faq = [
   {
     label: "Does it fill password fields?",
     content:
-      "No. Password fields are intentionally skipped — developers typically have specific test passwords or use password managers. FormForge focuses on data fields where random realistic values are useful.",
+      "No. Password fields are intentionally skipped - developers typically have specific test passwords or use password managers. FormForge focuses on data fields where random realistic values are useful.",
   },
   {
     label: "Which browsers are supported?",
@@ -133,86 +139,23 @@ useHead({
 
 <template>
   <div>
-    <UPageHero
+    <ExtensionLanding
+      eyebrow="Form testing extension"
       :title="title"
       :description="description"
-      :ui="{
-        title: 'text-4xl sm:text-5xl',
-      }"
-    >
-      <template #links>
-        <UButton
-          :to="chromeWebStoreUrl"
-          target="_blank"
-          label="Add to Chrome — Free"
-          trailing-icon="i-lucide-chrome"
-          size="xl"
-        />
-        <UButton
-          to="/formforge/policy"
-          label="Privacy Policy"
-          icon="i-lucide-shield-check"
-          size="xl"
-          color="neutral"
-          variant="subtle"
-        />
-      </template>
-    </UPageHero>
-
-    <UPageSection :ui="{ container: 'py-12 sm:py-16 lg:py-20' }">
-      <UCarousel
-        v-slot="{ item }"
-        :items="screenshots"
-        loop
-        arrows
-        dots
-        :autoplay="{ delay: 4000 }"
-        :prev="{ variant: 'solid', color: 'neutral' }"
-        :next="{ variant: 'solid', color: 'neutral' }"
-        :ui="{
-          item: 'basis-full px-4',
-          dots: '-bottom-8',
-        }"
-        class="max-w-4xl mx-auto"
-      >
-        <img
-          :src="item.src"
-          :alt="item.alt"
-          class="w-full rounded-lg shadow-lg"
-          loading="lazy"
-        />
-      </UCarousel>
-    </UPageSection>
-
-    <UPageSection
-      title="Stop typing test@test.com into every form"
-      description="Smart detection, realistic data, one click. No setup, no configuration, no DevTools."
+      :chrome-web-store-url="chromeWebStoreUrl"
+      policy-path="/formforge/policy"
+      :screenshots="screenshots"
       :features="features"
+      :faq="faq"
+      :metrics="metrics"
+      feature-title="Stop typing test@test.com into every form"
+      feature-description="FormForge turns repetitive form testing into a one-click workflow, with realistic identities, locale-aware data, and profile-based control."
+      cta-title="Free core filler. Pro for $2.99."
+      cta-description="Smart form filling with English (US) is free. Unlock 7 locales, custom profiles, field overrides, and faster testing workflows with a one-time purchase."
+      accent-class="from-amber-500/28 via-orange-400/14 to-transparent"
+      preview-label="Smart field detection, realistic profiles, locale-aware data, and shortcuts."
     />
-
-    <UPageSection
-      title="Frequently Asked Questions"
-      description="Everything you need to know about FormForge."
-    >
-      <UAccordion :items="faq" class="max-w-3xl mx-auto" />
-    </UPageSection>
-
-    <UPageSection>
-      <UPageCTA
-        title="Free core filler. Pro for $2.99."
-        description="Smart form filling with English (US) is completely free. Unlock 7 locales, custom profiles with field overrides, and more with a one-time $2.99 purchase. No subscriptions."
-        variant="subtle"
-        :links="[
-          {
-            label: 'Install from Chrome Web Store',
-            to: chromeWebStoreUrl,
-            target: '_blank',
-            trailingIcon: 'i-lucide-external-link',
-            color: 'neutral',
-          },
-        ]"
-      />
-    </UPageSection>
     <AppGradient />
   </div>
 </template>

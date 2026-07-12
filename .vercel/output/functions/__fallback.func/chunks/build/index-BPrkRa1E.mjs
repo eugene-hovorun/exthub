@@ -1,0 +1,186 @@
+import { _ as __nuxt_component_0, a as __nuxt_component_1 } from './gradient-RBBYd1C3.mjs';
+import { useSSRContext } from 'vue';
+import { ssrRenderAttrs, ssrRenderComponent } from 'vue/server-renderer';
+import { b as useSeoMeta, u as useHead } from './server.mjs';
+import 'embla-carousel-vue';
+import 'reka-ui';
+import '@vueuse/core';
+import './_plugin-vue_export-helper-1tPrXgE0.mjs';
+import '../nitro/nitro.mjs';
+import 'node:http';
+import 'node:https';
+import 'node:events';
+import 'node:buffer';
+import 'node:fs';
+import 'node:path';
+import 'node:crypto';
+import '@iconify/utils';
+import 'consola';
+import 'fast-xml-parser';
+import 'vue-router';
+import 'tailwindcss/colors';
+import '@iconify/vue';
+import 'tailwind-variants';
+import '@iconify/utils/lib/css/icon';
+import 'perfect-debounce';
+import 'vaul-vue';
+import '../routes/renderer.mjs';
+import 'vue-bundle-renderer/runtime';
+import 'unhead/server';
+import 'devalue';
+import 'unhead/plugins';
+import 'unhead/utils';
+
+const title = "DevPulse - Performance HUD for Developers";
+const description = "Real-time performance overlay for web developers. Monitor FPS, DOM nodes, memory, long tasks, and Core Web Vitals - right on the page.";
+const chromeWebStoreUrl = "https://chromewebstore.google.com/detail/devpulse/bmbloihfnfclfohdbbapheglhhpbbagp";
+const _sfc_main = {
+  __name: "index",
+  __ssrInlineRender: true,
+  setup(__props) {
+    const features = [
+      {
+        icon: "i-lucide-gauge",
+        title: "Real-Time FPS & DOM",
+        description: "Monitor frames per second and DOM node count with live sparkline history. Color-coded thresholds highlight performance issues instantly."
+      },
+      {
+        icon: "i-lucide-memory-stick",
+        title: "Memory & Long Tasks",
+        description: "Track JS heap memory usage and detect long tasks blocking the main thread. A live badge shows recent long task activity."
+      },
+      {
+        icon: "i-lucide-activity",
+        title: "Core Web Vitals",
+        description: "Monitor First Contentful Paint and Largest Contentful Paint with color-coded thresholds matching Google's performance guidelines."
+      },
+      {
+        icon: "i-lucide-globe",
+        title: "Network Overview",
+        description: "See total request count and transfer size at a glance. Spot unexpected network activity without opening DevTools."
+      },
+      {
+        icon: "i-lucide-sun-moon",
+        title: "Dark & Light Themes",
+        description: "Switch between dark, light, and system themes. The HUD adapts to your preference and remembers it across sessions."
+      },
+      {
+        icon: "i-lucide-shield",
+        title: "Shadow DOM Isolation",
+        description: "The HUD runs inside a closed shadow DOM - it won't interfere with your app's styles, frameworks, or DOM structure."
+      }
+    ];
+    const screenshots = [
+      {
+        src: "/devpulse/screenshot_1.png",
+        alt: "DevPulse - Dark theme performance HUD on a code editor"
+      },
+      {
+        src: "/devpulse/screenshot_2.png",
+        alt: "DevPulse - Light theme performance HUD"
+      },
+      {
+        src: "/devpulse/screenshot_3.png",
+        alt: "DevPulse - JSON export of performance metrics"
+      }
+    ];
+    const metrics = [
+      { value: "FPS", label: "live on-page monitoring" },
+      { value: "LCP", label: "Core Web Vitals coverage" },
+      { value: "$2.99", label: "one-time premium unlock" }
+    ];
+    const faq = [
+      {
+        label: "Is DevPulse free?",
+        content: "Yes! FPS and DOM monitoring are completely free. Premium metrics - memory, long tasks, network, FCP, LCP, and JSON export - are a one-time $2.99 purchase. No subscriptions."
+      },
+      {
+        label: "Does it collect any data?",
+        content: "No. DevPulse runs entirely in your browser. Performance metrics are computed locally and never sent to any server. See our privacy policy for full details."
+      },
+      {
+        label: "How does it work?",
+        content: "Click the DevPulse toolbar icon to inject a lightweight HUD overlay onto the current page. It uses requestAnimationFrame for FPS, PerformanceObserver for Web Vitals, and standard browser APIs for everything else."
+      },
+      {
+        label: "Will it affect my page's performance?",
+        content: "DevPulse is designed to be lightweight. The rAF loop adds negligible overhead, and all metric collection is throttled. The HUD runs inside a shadow DOM, completely isolated from your page."
+      },
+      {
+        label: "Does it work on localhost?",
+        content: "Yes, and it's optimized for local development. On localhost the HUD auto-restores after page refresh so you don't have to re-enable it every time you save a file."
+      },
+      {
+        label: "Can I drag and reposition the HUD?",
+        content: "Yes. Drag the header bar to move the HUD anywhere on screen. Your position is remembered on the current page. You can also collapse it to a minimal bar showing just FPS and DOM count."
+      },
+      {
+        label: "What does the JSON export include?",
+        content: "The export snapshot includes all current metrics plus sparkline history arrays, timestamped with the current URL. Useful for performance reports and regression tracking."
+      },
+      {
+        label: "Which browsers are supported?",
+        content: "DevPulse works in Chrome and Chromium-based browsers (Edge, Brave, Arc, etc.) that support Manifest V3 extensions."
+      }
+    ];
+    useSeoMeta({
+      title,
+      description,
+      ogTitle: title,
+      ogDescription: description,
+      twitterCard: "summary_large_image"
+    });
+    useHead({
+      script: [
+        {
+          type: "application/ld+json",
+          innerHTML: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faq.map((item) => ({
+              "@type": "Question",
+              name: item.label,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.content
+              }
+            }))
+          })
+        }
+      ]
+    });
+    return (_ctx, _push, _parent, _attrs) => {
+      const _component_ExtensionLanding = __nuxt_component_0;
+      const _component_AppGradient = __nuxt_component_1;
+      _push(`<div${ssrRenderAttrs(_attrs)}>`);
+      _push(ssrRenderComponent(_component_ExtensionLanding, {
+        eyebrow: "Performance HUD extension",
+        title,
+        description,
+        "chrome-web-store-url": chromeWebStoreUrl,
+        "policy-path": "/devpulse/policy",
+        screenshots,
+        features,
+        faq,
+        metrics,
+        "feature-title": "Performance monitoring without the overhead",
+        "feature-description": "DevPulse puts the right metrics directly on the page, so you can catch issues without opening another panel or breaking your workflow.",
+        "cta-title": "Free core metrics. Premium for $2.99.",
+        "cta-description": "FPS and DOM monitoring are free. Unlock memory, long tasks, Web Vitals, network stats, and JSON export with a one-time purchase.",
+        "accent-class": "from-emerald-500/28 via-lime-400/16 to-transparent",
+        "preview-label": "On-page FPS, DOM, memory, Web Vitals, network stats, and export."
+      }, null, _parent));
+      _push(ssrRenderComponent(_component_AppGradient, null, null, _parent));
+      _push(`</div>`);
+    };
+  }
+};
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/devpulse/index.vue");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+
+export { _sfc_main as default };
+//# sourceMappingURL=index-BPrkRa1E.mjs.map

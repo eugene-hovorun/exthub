@@ -1,7 +1,15 @@
 <script setup>
-const title = "PickPerfect — Privacy Policy";
+const title = "PickPerfect - Privacy Policy";
 const description =
   "PickPerfect does not collect, transmit, or share any personal data. Everything stays on your device.";
+const updatedAt = "February 7, 2026";
+const summary =
+  "PickPerfect keeps your data on your device. The extension does not collect personal information, send usage data anywhere, or run hidden tracking. Premium payments go through ExtensionPay.";
+const facts = [
+  { label: "Data collection", value: "None" },
+  { label: "Storage", value: "Local device only" },
+  { label: "Payments", value: "ExtensionPay only" },
+];
 
 useSeoMeta({
   title,
@@ -12,146 +20,121 @@ useSeoMeta({
 </script>
 
 <template>
-  <UPage>
-    <UContainer class="max-w-3xl">
-      <UPageHeader
-        title="PickPerfect — Privacy Policy"
-        description="Last updated: February 7, 2026"
-      />
+  <PolicyPage
+    :title="title"
+    :description="description"
+    :updated-at="updatedAt"
+    :summary="summary"
+    product-path="/pickperfect"
+    :facts="facts"
+  >
+    <h2>What PickPerfect stores on your device</h2>
+    <p>
+      PickPerfect saves a small amount of local data so the extension works the
+      way you expect each time you open it. That data lives in
+      <code>chrome.storage.local</code> on your device.
+    </p>
+    <ul>
+      <li>
+        <strong>Color history</strong> for the last 20 colors you picked,
+        including the value and timestamp
+      </li>
+      <li>
+        <strong>Format preference</strong> so the popup remembers whether you
+        prefer HEX, RGB, or HSL
+      </li>
+      <li>
+        <strong>Premium status</strong> so paid features unlock quickly without
+        re-checking on every open
+      </li>
+    </ul>
+    <p>
+      PickPerfect does not send this data to us. The only exception is premium
+      verification through ExtensionPay, which is covered below.
+    </p>
 
-      <UPageBody class="prose dark:prose-invert">
-        <UAlert
-          title="The short version"
-          description="PickPerfect does not collect, transmit, or share any personal data. Everything stays on your device. Premium features use ExtensionPay for payment processing only."
-          color="info"
-          variant="subtle"
-          icon="i-lucide-shield-check"
-        />
+    <h2>What PickPerfect collects</h2>
+    <p>
+      PickPerfect does not collect personal data, usage analytics, telemetry,
+      or tracking identifiers. If you use the free extension and never buy
+      premium, there is nothing being sent to our server because there is no
+      server involved in the core workflow.
+    </p>
 
-        <h2>What data does PickPerfect store?</h2>
-        <p>
-          PickPerfect stores the following data locally on your device using
-          Chrome's built-in storage API (<code>chrome.storage.local</code>):
-        </p>
-        <ul>
-          <li>
-            <strong>Color history</strong> — the last 20 colors you picked (HEX
-            values and timestamps)
-          </li>
-          <li>
-            <strong>Format preference</strong> — your preferred color format
-            (HEX, RGB, or HSL)
-          </li>
-          <li>
-            <strong>Premium status</strong> — whether you've purchased premium
-            features (cached locally for faster popup loading)
-          </li>
-        </ul>
-        <p>
-          This data never leaves your browser. It is not transmitted to any
-          server, third party, or external service (except ExtensionPay for
-          payment verification — see below).
-        </p>
+    <h2>Why the extension asks for permissions</h2>
+    <p>PickPerfect asks for a narrow set of Chrome permissions for specific features.</p>
+    <ul>
+      <li>
+        <strong>storage</strong> keeps your color history, format choice, and
+        premium status on your device
+      </li>
+      <li>
+        <strong>activeTab</strong> is used only when you run page palette
+        extraction on the current page
+      </li>
+      <li>
+        <strong>scripting</strong> injects the one-time extraction script for
+        that palette feature and nothing more
+      </li>
+    </ul>
+    <p>
+      The main color picker uses the browser's native EyeDropper API. It does
+      not need a persistent content script, and it does not read arbitrary page
+      content in the background.
+    </p>
 
-        <h2>What data does PickPerfect collect?</h2>
-        <p>
-          None. PickPerfect does not collect any personal data, usage data,
-          analytics, or telemetry of any kind.
-        </p>
+    <h2>Premium features</h2>
+    <p>
+      Premium access is a one-time purchase. The paid features still run
+      locally inside the extension.
+    </p>
+    <ul>
+      <li><strong>WCAG Contrast Checker</strong> runs locally in the popup</li>
+      <li><strong>Tailwind Color Mapping</strong> runs locally in the popup</li>
+      <li>
+        <strong>Page Palette Extraction</strong> reads visible CSS color values
+        from the current tab when you explicitly click the extraction button
+      </li>
+    </ul>
+    <p>
+      That extraction flow does not read your form submissions, cookies, or
+      browsing history. It only analyzes color values needed to build the page
+      palette.
+    </p>
 
-        <h2>Permissions</h2>
-        <p>PickPerfect requests the following Chrome permissions:</p>
-        <ul>
-          <li>
-            <strong>storage</strong> — to save your color history and format
-            preference locally on your device
-          </li>
-          <li>
-            <strong>activeTab</strong> — to extract colors from the current
-            webpage when you click "Extract Palette" (premium feature only,
-            on-demand)
-          </li>
-          <li>
-            <strong>scripting</strong> — to inject the palette extraction script
-            when you click "Extract Palette" (premium feature only, runs once
-            then disappears)
-          </li>
-        </ul>
-        <p>
-          PickPerfect does not request access to your browsing history or any
-          content beyond the active tab when you explicitly click the extraction
-          button. It uses the native EyeDropper API for core color picking,
-          which requires no content script injection.
-        </p>
+    <h2>Third-party services</h2>
+    <p>
+      PickPerfect uses <strong>ExtensionPay</strong> for premium checkout and
+      license verification. ExtensionPay may use Stripe to process payments.
+      You can read their privacy policy here:
+      <a href="https://extensionpay.com/privacy" target="_blank">extensionpay.com/privacy</a>.
+    </p>
+    <p>
+      Outside of payments, PickPerfect does not use analytics tools, ad
+      networks, or hidden third-party scripts.
+    </p>
 
-        <h2>Premium features (optional)</h2>
-        <p>
-          If you purchase premium features ($2.99 one-time), PickPerfect gains
-          access to:
-        </p>
-        <ul>
-          <li>
-            <strong>WCAG Contrast Checker</strong> — runs locally, no data
-            transmitted
-          </li>
-          <li>
-            <strong>Tailwind Color Mapping</strong> — runs locally, no data
-            transmitted
-          </li>
-          <li>
-            <strong>Page Palette Extraction</strong> — reads computed CSS colors
-            from visible elements on the active tab when you click "Extract
-            Palette". This data is processed locally and never sent to any
-            server.
-          </li>
-        </ul>
-        <p>
-          The palette extraction feature only runs when you explicitly click the
-          button. It extracts color values from CSS styles and does not access
-          page content, form data, cookies, or any personal information.
-        </p>
+    <h2>What PickPerfect does not do</h2>
+    <p>
+      PickPerfect does not track you, profile you, sell your data, or run
+      passive monitoring in the background. It does not read your browsing
+      history, and it does not keep a persistent content script attached to
+      pages.
+    </p>
 
-        <h2>Third parties</h2>
-        <p><strong>ExtensionPay</strong> (for premium features only):</p>
-        <ul>
-          <li>Used for payment processing and premium feature verification</li>
-          <li>Processes payment information through Stripe</li>
-          <li>
-            Their privacy policy:
-            <a href="https://extensionpay.com/privacy" target="_blank">
-              extensionpay.com/privacy
-            </a>
-          </li>
-        </ul>
-        <p>
-          PickPerfect does not use any analytics tools, advertising networks, or
-          other third-party services.
-        </p>
+    <h2>Changes to this policy</h2>
+    <p>
+      If we update this policy, the revised version will be published at the
+      same URL with a new date at the top of the page.
+    </p>
 
-        <h2>What PickPerfect does NOT do</h2>
-        <ul>
-          <li>❌ No tracking or analytics</li>
-          <li>❌ No data collection</li>
-          <li>❌ No ads or advertising networks</li>
-          <li>❌ No cookies</li>
-          <li>❌ No form data access</li>
-          <li>❌ No browsing history</li>
-          <li>❌ No background activity (except ExtensionPay verification)</li>
-          <li>❌ No persistent content scripts</li>
-        </ul>
-
-        <h2>Changes to this policy</h2>
-        <p>
-          If this policy changes, the updated version will be published at this
-          same URL with an updated date.
-        </p>
-
-        <h2>Contact</h2>
-        <p>
-          Questions? Reach out at
-          <a href="mailto:5797565@gmail.com">5797565@gmail.com</a>
-        </p>
-      </UPageBody>
-    </UContainer>
-  </UPage>
+    <div class="policy-contact mt-8 rounded-xl border border-slate-200/80 bg-white/70 p-4 dark:border-white/10 dark:bg-slate-900/70">
+      <p class="text-sm font-semibold text-slate-950 dark:text-white">Contact</p>
+      <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+        If you have a privacy question about PickPerfect, send it to
+        <a href="mailto:5797565@gmail.com">5797565@gmail.com</a>
+        and include "PickPerfect" in the subject line if you want a faster reply.
+      </p>
+    </div>
+  </PolicyPage>
 </template>

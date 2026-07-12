@@ -1,7 +1,15 @@
 <script setup>
-const title = "DevPulse — Privacy Policy";
+const title = "DevPulse - Privacy Policy";
 const description =
   "DevPulse does not collect, transmit, or share any personal data. All performance metrics stay on your device.";
+const updatedAt = "February 13, 2026";
+const summary =
+  "DevPulse computes its metrics inside your browser and keeps them there. The extension does not collect personal data or analytics. Premium payments go through ExtensionPay.";
+const facts = [
+  { label: "Data collection", value: "None" },
+  { label: "Metrics", value: "Computed locally" },
+  { label: "Payments", value: "ExtensionPay only" },
+];
 
 useSeoMeta({
   title,
@@ -12,158 +20,119 @@ useSeoMeta({
 </script>
 
 <template>
-  <UPage>
-    <UContainer class="max-w-3xl">
-      <UPageHeader
-        title="DevPulse — Privacy Policy"
-        description="Last updated: February 13, 2026"
-      />
+  <PolicyPage
+    :title="title"
+    :description="description"
+    :updated-at="updatedAt"
+    :summary="summary"
+    product-path="/devpulse"
+    :facts="facts"
+  >
+    <h2>What DevPulse stores</h2>
+    <p>
+      DevPulse stores a few settings so the HUD behaves consistently across
+      sessions. Those settings stay in browser storage on your device.
+    </p>
+    <ul>
+      <li>
+        <strong>HUD position and collapsed state</strong> so the overlay can
+        reopen where you left it
+      </li>
+      <li>
+        <strong>Theme preference</strong> for dark, light, or system mode
+      </li>
+      <li>
+        <strong>HUD active state</strong> for localhost auto-restore during
+        development
+      </li>
+      <li>
+        <strong>Premium status</strong> cached in <code>chrome.storage.local</code>
+        for faster startup
+      </li>
+    </ul>
+    <p>
+      None of that data is sent to us. It stays inside your browser unless
+      premium verification needs to talk to ExtensionPay.
+    </p>
 
-      <UPageBody class="prose dark:prose-invert">
-        <UAlert
-          title="The short version"
-          description="DevPulse does not collect, transmit, or share any personal data. All performance metrics are computed locally and never leave your browser. Premium features use ExtensionPay for payment processing only."
-          color="info"
-          variant="subtle"
-          icon="i-lucide-shield-check"
-        />
+    <h2>What DevPulse collects</h2>
+    <p>
+      DevPulse does not collect personal data, analytics, telemetry, or usage
+      tracking. FPS, DOM count, memory, Web Vitals, and network metrics are
+      calculated in the active browser tab and are not uploaded anywhere.
+    </p>
 
-        <h2>What data does DevPulse store?</h2>
-        <p>
-          DevPulse stores the following data locally on your device using
-          browser storage APIs:
-        </p>
-        <ul>
-          <li>
-            <strong>HUD position and collapsed state</strong> — stored in page
-            localStorage to restore your layout preferences on the current page
-          </li>
-          <li>
-            <strong>Theme preference</strong> — your chosen theme (dark, light,
-            or system) stored in page localStorage
-          </li>
-          <li>
-            <strong>HUD active state</strong> — stored in page localStorage for
-            localhost auto-restore functionality
-          </li>
-          <li>
-            <strong>Premium status</strong> — whether you've purchased premium
-            features, cached in <code>chrome.storage.local</code> for faster
-            loading
-          </li>
-        </ul>
-        <p>
-          This data never leaves your browser. It is not transmitted to any
-          server, third party, or external service (except ExtensionPay for
-          payment verification — see below).
-        </p>
+    <h2>Why DevPulse needs permissions</h2>
+    <p>DevPulse asks for only the permissions required to place the HUD on the page and save its state.</p>
+    <ul>
+      <li>
+        <strong>activeTab</strong> lets the extension inject the HUD into the
+        tab you choose
+      </li>
+      <li>
+        <strong>scripting</strong> runs the overlay code on that page
+      </li>
+      <li>
+        <strong>storage</strong> keeps premium status locally
+      </li>
+    </ul>
+    <p>
+      DevPulse does not use <code>&lt;all_urls&gt;</code>. It cannot inspect or
+      modify arbitrary pages unless you actively turn it on. The one exception
+      is localhost and 127.0.0.1, where a small helper script supports HUD
+      persistence during development.
+    </p>
 
-        <h2>What data does DevPulse collect?</h2>
-        <p>
-          None. DevPulse does not collect any personal data, usage data,
-          analytics, or telemetry of any kind. Performance metrics (FPS, DOM
-          count, memory, Web Vitals, network stats) are computed in real-time
-          inside your browser tab and are never recorded or transmitted.
-        </p>
+    <h2>Premium features</h2>
+    <p>
+      Premium is a one-time purchase. The unlocked metrics still run locally in
+      the browser tab where the HUD is active.
+    </p>
+    <ul>
+      <li><strong>Memory monitoring</strong> reads the browser's own performance APIs</li>
+      <li><strong>Long task detection</strong> uses <code>PerformanceObserver</code></li>
+      <li><strong>Network overview</strong> reads local resource timing entries</li>
+      <li><strong>Core Web Vitals</strong> are measured with native web APIs</li>
+      <li><strong>JSON export</strong> downloads a snapshot directly to your device</li>
+    </ul>
+    <p>
+      DevPulse does not stream those metrics to a remote backend. They stay in
+      the page context where they were measured.
+    </p>
 
-        <h2>Permissions</h2>
-        <p>DevPulse requests the following Chrome permissions:</p>
-        <ul>
-          <li>
-            <strong>activeTab</strong> — to inject the performance HUD overlay
-            into the current tab when you click the toolbar icon
-          </li>
-          <li>
-            <strong>scripting</strong> — to execute the HUD content script on
-            the active page
-          </li>
-          <li>
-            <strong>storage</strong> — to save your premium subscription status
-            locally on your device
-          </li>
-        </ul>
-        <p>
-          DevPulse does not use the <code>&lt;all_urls&gt;</code> permission and
-          cannot access any page unless you explicitly activate it by clicking
-          the toolbar icon. The only exception is localhost and 127.0.0.1, where
-          a content script runs automatically to support HUD persistence across
-          page reloads during local development.
-        </p>
+    <h2>Third-party services</h2>
+    <p>
+      DevPulse uses <strong>ExtensionPay</strong> for checkout and license
+      verification. ExtensionPay may process payments through Stripe. Their
+      privacy policy is here:
+      <a href="https://extensionpay.com/privacy" target="_blank">extensionpay.com/privacy</a>.
+    </p>
+    <p>
+      There are no ad networks, analytics SDKs, or extra tracking services in
+      the extension.
+    </p>
 
-        <h2>Premium features (optional)</h2>
-        <p>
-          If you purchase premium features ($2.99 one-time), DevPulse unlocks:
-        </p>
-        <ul>
-          <li>
-            <strong>Memory monitoring</strong> — reads JS heap size from the
-            browser's Performance API, processed locally
-          </li>
-          <li>
-            <strong>Long task detection</strong> — uses PerformanceObserver
-            locally, no data transmitted
-          </li>
-          <li>
-            <strong>Network overview</strong> — reads resource timing entries
-            locally, no data transmitted
-          </li>
-          <li>
-            <strong>Core Web Vitals (FCP, LCP)</strong> — uses
-            PerformanceObserver locally, no data transmitted
-          </li>
-          <li>
-            <strong>JSON export</strong> — generates a snapshot file that
-            downloads directly to your device
-          </li>
-        </ul>
-        <p>
-          All premium metric collection happens entirely within your browser tab
-          using standard Web APIs. No data is sent to any server.
-        </p>
+    <h2>What DevPulse does not do</h2>
+    <p>
+      DevPulse does not monitor your browsing history, read your form entries,
+      capture passwords, or run persistent background tracking on ordinary
+      websites. Outside of payment verification for premium users, it does not
+      make hidden network requests on its own.
+    </p>
 
-        <h2>Third parties</h2>
-        <p><strong>ExtensionPay</strong> (for premium features only):</p>
-        <ul>
-          <li>Used for payment processing and premium feature verification</li>
-          <li>Processes payment information through Stripe</li>
-          <li>
-            Their privacy policy:
-            <a href="https://extensionpay.com/privacy" target="_blank">
-              extensionpay.com/privacy
-            </a>
-          </li>
-        </ul>
-        <p>
-          DevPulse does not use any analytics tools, advertising networks, or
-          other third-party services.
-        </p>
+    <h2>Changes to this policy</h2>
+    <p>
+      If this policy changes, the updated version will stay at this URL and the
+      date at the top of the page will be updated.
+    </p>
 
-        <h2>What DevPulse does NOT do</h2>
-        <ul>
-          <li>❌ No tracking or analytics</li>
-          <li>❌ No data collection or transmission</li>
-          <li>❌ No ads or advertising networks</li>
-          <li>❌ No cookies</li>
-          <li>❌ No access to page content, form data, or passwords</li>
-          <li>❌ No browsing history access</li>
-          <li>
-            ❌ No background network requests (except ExtensionPay verification)
-          </li>
-          <li>❌ No persistent content scripts on non-localhost pages</li>
-        </ul>
-
-        <h2>Changes to this policy</h2>
-        <p>
-          If this policy changes, the updated version will be published at this
-          same URL with an updated date.
-        </p>
-
-        <h2>Contact</h2>
-        <p>
-          Questions? Reach out at
-          <a href="mailto:5797565@gmail.com">5797565@gmail.com</a>
-        </p>
-      </UPageBody>
-    </UContainer>
-  </UPage>
+    <div class="policy-contact mt-8 rounded-xl border border-slate-200/80 bg-white/70 p-4 dark:border-white/10 dark:bg-slate-900/70">
+      <p class="text-sm font-semibold text-slate-950 dark:text-white">Contact</p>
+      <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+        If you have a privacy question about DevPulse, email
+        <a href="mailto:5797565@gmail.com">5797565@gmail.com</a>.
+        Adding "DevPulse" to the subject line helps us route it faster.
+      </p>
+    </div>
+  </PolicyPage>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-const title = "PickPerfect — Color Picker for Developers";
+const title = "PickPerfect - Color Picker for Developers";
 const description =
   "Pick colors from anywhere on your screen. Advanced Chrome extension with WCAG contrast checker, Tailwind mapping, and palette extraction.";
 const chromeWebStoreUrl =
@@ -34,7 +34,7 @@ const features = [
     icon: "i-lucide-swatch-book",
     title: "Tailwind Color Mapping",
     description:
-      "Find the nearest match from 242 Tailwind CSS colors instantly. Stop guessing — get the exact class name you need.",
+      "Find the nearest match from 242 Tailwind CSS colors instantly. Stop guessing - get the exact class name you need.",
   },
   {
     icon: "i-lucide-palette",
@@ -47,27 +47,33 @@ const features = [
 const screenshots = [
   {
     src: "/pickperfect/screenshot_1.png",
-    alt: "PickPerfect — Color picking with history",
+    alt: "PickPerfect - Color picking with history",
   },
   {
     src: "/pickperfect/screenshot_2.png",
-    alt: "PickPerfect — Tailwind CSS color mapping",
+    alt: "PickPerfect - Tailwind CSS color mapping",
   },
   {
     src: "/pickperfect/screenshot_3.png",
-    alt: "PickPerfect — WCAG contrast checker",
+    alt: "PickPerfect - WCAG contrast checker",
   },
   {
     src: "/pickperfect/screenshot_4.png",
-    alt: "PickPerfect — Page palette extraction",
+    alt: "PickPerfect - Page palette extraction",
   },
+];
+
+const metrics = [
+  { value: "242", label: "Tailwind color matches" },
+  { value: "WCAG", label: "built-in contrast checks" },
+  { value: "$2.99", label: "one-time premium unlock" },
 ];
 
 const faq = [
   {
     label: "Is PickPerfect free?",
     content:
-      "Yes! Core features — color picking, format switching, and color history — are completely free. Premium features (WCAG checker, Tailwind mapping, palette extraction) are a one-time $2.99 purchase. No subscriptions.",
+      "Yes! Core features - color picking, format switching, and color history - are completely free. Premium features (WCAG checker, Tailwind mapping, palette extraction) are a one-time $2.99 purchase. No subscriptions.",
   },
   {
     label: "Does it collect any data?",
@@ -77,7 +83,7 @@ const faq = [
   {
     label: "How does the color picker work?",
     content:
-      "PickPerfect uses the browser's native EyeDropper API, which means it can pick colors from anywhere on your screen — not just the browser window. No content scripts are injected into pages for basic color picking.",
+      "PickPerfect uses the browser's native EyeDropper API, which means it can pick colors from anywhere on your screen - not just the browser window. No content scripts are injected into pages for basic color picking.",
   },
   {
     label: "What color formats are supported?",
@@ -137,86 +143,23 @@ useHead({
 
 <template>
   <div>
-    <UPageHero
+    <ExtensionLanding
+      eyebrow="Color workflow extension"
       :title="title"
       :description="description"
-      :ui="{
-        title: 'text-4xl sm:text-5xl',
-      }"
-    >
-      <template #links>
-        <UButton
-          :to="chromeWebStoreUrl"
-          target="_blank"
-          label="Add to Chrome — Free"
-          trailing-icon="i-lucide-chrome"
-          size="xl"
-        />
-        <UButton
-          to="/pickperfect/policy"
-          label="Privacy Policy"
-          icon="i-lucide-shield-check"
-          size="xl"
-          color="neutral"
-          variant="subtle"
-        />
-      </template>
-    </UPageHero>
-
-    <UPageSection :ui="{ container: 'py-12 sm:py-16 lg:py-20' }">
-      <UCarousel
-        v-slot="{ item }"
-        :items="screenshots"
-        loop
-        arrows
-        dots
-        :autoplay="{ delay: 4000 }"
-        :prev="{ variant: 'solid', color: 'neutral' }"
-        :next="{ variant: 'solid', color: 'neutral' }"
-        :ui="{
-          item: 'basis-full px-4',
-          dots: '-bottom-8',
-        }"
-        class="max-w-4xl mx-auto"
-      >
-        <img
-          :src="item.src"
-          :alt="item.alt"
-          class="w-full rounded-lg shadow-lg"
-          loading="lazy"
-        />
-      </UCarousel>
-    </UPageSection>
-
-    <UPageSection
-      title="Everything you need to work with color"
-      description="From quick picks to accessibility audits — one extension, zero bloat."
+      :chrome-web-store-url="chromeWebStoreUrl"
+      policy-path="/pickperfect/policy"
+      :screenshots="screenshots"
       :features="features"
+      :faq="faq"
+      :metrics="metrics"
+      feature-title="Everything you need to work with color"
+      feature-description="From quick picks to accessibility audits, PickPerfect stays focused on the color tasks developers and designers actually repeat."
+      cta-title="Free core features. Premium for $2.99."
+      cta-description="Color picking, format switching, and history are completely free. Unlock WCAG checker, Tailwind mapping, and palette extraction with a one-time purchase."
+      accent-class="from-blue-500/30 via-cyan-400/16 to-transparent"
+      preview-label="Color picking, Tailwind mapping, contrast checks, and palette extraction."
     />
-
-    <UPageSection
-      title="Frequently Asked Questions"
-      description="Everything you need to know about PickPerfect."
-    >
-      <UAccordion :items="faq" class="max-w-3xl mx-auto" />
-    </UPageSection>
-
-    <UPageSection>
-      <UPageCTA
-        title="Free core features. Premium for $2.99."
-        description="Color picking, format switching, and history are completely free. Unlock WCAG checker, Tailwind mapping, and palette extraction with a one-time $2.99 purchase. No subscriptions."
-        variant="subtle"
-        :links="[
-          {
-            label: 'Install from Chrome Web Store',
-            to: chromeWebStoreUrl,
-            target: '_blank',
-            trailingIcon: 'i-lucide-external-link',
-            color: 'neutral',
-          },
-        ]"
-      />
-    </UPageSection>
     <AppGradient />
   </div>
 </template>

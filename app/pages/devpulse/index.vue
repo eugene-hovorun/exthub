@@ -1,7 +1,7 @@
 <script setup>
-const title = "DevPulse — Performance HUD for Developers";
+const title = "DevPulse - Performance HUD for Developers";
 const description =
-  "Real-time performance overlay for web developers. Monitor FPS, DOM nodes, memory, long tasks, and Core Web Vitals — right on the page.";
+  "Real-time performance overlay for web developers. Monitor FPS, DOM nodes, memory, long tasks, and Core Web Vitals - right on the page.";
 const chromeWebStoreUrl =
   "https://chromewebstore.google.com/detail/devpulse/bmbloihfnfclfohdbbapheglhhpbbagp";
 
@@ -40,30 +40,36 @@ const features = [
     icon: "i-lucide-shield",
     title: "Shadow DOM Isolation",
     description:
-      "The HUD runs inside a closed shadow DOM — it won't interfere with your app's styles, frameworks, or DOM structure.",
+      "The HUD runs inside a closed shadow DOM - it won't interfere with your app's styles, frameworks, or DOM structure.",
   },
 ];
 
 const screenshots = [
   {
     src: "/devpulse/screenshot_1.png",
-    alt: "DevPulse — Dark theme performance HUD on a code editor",
+    alt: "DevPulse - Dark theme performance HUD on a code editor",
   },
   {
     src: "/devpulse/screenshot_2.png",
-    alt: "DevPulse — Light theme performance HUD",
+    alt: "DevPulse - Light theme performance HUD",
   },
   {
     src: "/devpulse/screenshot_3.png",
-    alt: "DevPulse — JSON export of performance metrics",
+    alt: "DevPulse - JSON export of performance metrics",
   },
+];
+
+const metrics = [
+  { value: "FPS", label: "live on-page monitoring" },
+  { value: "LCP", label: "Core Web Vitals coverage" },
+  { value: "$2.99", label: "one-time premium unlock" },
 ];
 
 const faq = [
   {
     label: "Is DevPulse free?",
     content:
-      "Yes! FPS and DOM monitoring are completely free. Premium metrics — memory, long tasks, network, FCP, LCP, and JSON export — are a one-time $2.99 purchase. No subscriptions.",
+      "Yes! FPS and DOM monitoring are completely free. Premium metrics - memory, long tasks, network, FCP, LCP, and JSON export - are a one-time $2.99 purchase. No subscriptions.",
   },
   {
     label: "Does it collect any data?",
@@ -133,86 +139,23 @@ useHead({
 
 <template>
   <div>
-    <UPageHero
+    <ExtensionLanding
+      eyebrow="Performance HUD extension"
       :title="title"
       :description="description"
-      :ui="{
-        title: 'text-4xl sm:text-5xl',
-      }"
-    >
-      <template #links>
-        <UButton
-          :to="chromeWebStoreUrl"
-          target="_blank"
-          label="Add to Chrome — Free"
-          trailing-icon="i-lucide-chrome"
-          size="xl"
-        />
-        <UButton
-          to="/devpulse/policy"
-          label="Privacy Policy"
-          icon="i-lucide-shield-check"
-          size="xl"
-          color="neutral"
-          variant="subtle"
-        />
-      </template>
-    </UPageHero>
-
-    <UPageSection :ui="{ container: 'py-12 sm:py-16 lg:py-20' }">
-      <UCarousel
-        v-slot="{ item }"
-        :items="screenshots"
-        loop
-        arrows
-        dots
-        :autoplay="{ delay: 4000 }"
-        :prev="{ variant: 'solid', color: 'neutral' }"
-        :next="{ variant: 'solid', color: 'neutral' }"
-        :ui="{
-          item: 'basis-full px-4',
-          dots: '-bottom-8',
-        }"
-        class="max-w-4xl mx-auto"
-      >
-        <img
-          :src="item.src"
-          :alt="item.alt"
-          class="w-full rounded-lg shadow-lg"
-          loading="lazy"
-        />
-      </UCarousel>
-    </UPageSection>
-
-    <UPageSection
-      title="Performance monitoring without the overhead"
-      description="Real-time metrics on the page — no DevTools panel, no context switching, no setup."
+      :chrome-web-store-url="chromeWebStoreUrl"
+      policy-path="/devpulse/policy"
+      :screenshots="screenshots"
       :features="features"
+      :faq="faq"
+      :metrics="metrics"
+      feature-title="Performance monitoring without the overhead"
+      feature-description="DevPulse puts the right metrics directly on the page, so you can catch issues without opening another panel or breaking your workflow."
+      cta-title="Free core metrics. Premium for $2.99."
+      cta-description="FPS and DOM monitoring are free. Unlock memory, long tasks, Web Vitals, network stats, and JSON export with a one-time purchase."
+      accent-class="from-emerald-500/28 via-lime-400/16 to-transparent"
+      preview-label="On-page FPS, DOM, memory, Web Vitals, network stats, and export."
     />
-
-    <UPageSection
-      title="Frequently Asked Questions"
-      description="Everything you need to know about DevPulse."
-    >
-      <UAccordion :items="faq" class="max-w-3xl mx-auto" />
-    </UPageSection>
-
-    <UPageSection>
-      <UPageCTA
-        title="Free core metrics. Premium for $2.99."
-        description="FPS and DOM monitoring are completely free. Unlock memory, long tasks, Web Vitals, network stats, and JSON export with a one-time $2.99 purchase. No subscriptions."
-        variant="subtle"
-        :links="[
-          {
-            label: 'Install from Chrome Web Store',
-            to: chromeWebStoreUrl,
-            target: '_blank',
-            trailingIcon: 'i-lucide-external-link',
-            color: 'neutral',
-          },
-        ]"
-      />
-    </UPageSection>
     <AppGradient />
   </div>
 </template>
