@@ -1,8 +1,0 @@
-const PolicyPage_vue_vue_type_style_index_0_scoped_2ea878ba_lang = ".policy-prose[data-v-2ea878ba] h2{color:#0f172a;font-size:1.35rem;font-weight:600;line-height:1.3;margin-top:2rem}.policy-prose[data-v-2ea878ba] li,.policy-prose[data-v-2ea878ba] p{color:#475569;line-height:1.75}.policy-prose[data-v-2ea878ba] p+:deep(p){margin-top:1rem}.policy-prose[data-v-2ea878ba] ul{margin-bottom:1rem;margin-top:1rem;padding-left:1.25rem}.policy-prose[data-v-2ea878ba] li+li{margin-top:.55rem}.policy-prose[data-v-2ea878ba] a,.policy-prose[data-v-2ea878ba] .policy-contact a{color:#0284c7;text-decoration:underline;text-underline-offset:.18em}.policy-prose[data-v-2ea878ba] code{background:#94a3b81f;border-radius:.5rem;color:#0f172a;font-size:.9em;padding:.12rem .38rem}.policy-prose[data-v-2ea878ba] strong{color:#0f172a}.dark{color:#f8fafc}.dark{color:#cbd5e1}.dark{color:#7dd3fc}.dark{background:#94a3b824}";
-
-const PolicyPageStyles_BR4i_whJ = [
-  PolicyPage_vue_vue_type_style_index_0_scoped_2ea878ba_lang
-];
-
-export { PolicyPageStyles_BR4i_whJ as default };
-//# sourceMappingURL=PolicyPage-styles.BR4i_whJ.mjs.map
