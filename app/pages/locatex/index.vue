@@ -2,7 +2,8 @@
 const title = "LocateX - Smart XPath, CSS & DOM Inspector";
 const description =
   "Inspect live elements, generate stable XPath and CSS selectors, validate them instantly, and build reusable locator templates without DevTools chaos.";
-const chromeWebStoreUrl = "";
+const chromeWebStoreUrl =
+  "https://chromewebstore.google.com/detail/locatex-%E2%80%94-smart-xpath-css/kalcmeiennbfbgbfflniekngmemaojmn";
 
 const features = [
   {
